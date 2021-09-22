@@ -33,3 +33,19 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.content span')?.textContent).toContain('demo1 app is running!');
   });
 });
+
+function resolveAfter2Seconds(x: any) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+}
+
+function getValueWithPromise() {
+  resolveAfter2Seconds(20).then(value => {
+    console.log(`promise result: ${value}`);
+  });
+  console.log('I will not wait until promise is resolved');
+}
+getValueWithPromise();
